@@ -1,0 +1,41 @@
+.title-container {
+    padding-top: 13%;
+    color: #24646A;
+    font-weight: bold;
+    a {
+        color: #AE713A;
+        font-size: 1rem;
+        line-height: 2;
+        font-weight: 300;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+.form-container {
+    .logo {
+        text-align: center;
+        img {
+            height: 16rem;
+        }
+    }
+    form {
+        appearance: none;
+        width: 75%;
+        margin: 0 auto;
+        input {
+            color: #24646A;
+        }
+        input:-webkit-autofill {
+            -webkit-text-fill-color: #24646A !important;
+         }
+        button.submit {
+            background-color: #24646A;
+            border: none; 
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    text-align: center;
+}
