@@ -1,9 +1,15 @@
-
-    <button class="add-task"
-    (click)="onBack()">Back to board
-</button>
-<div class="form-container">
-    <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+<div class="add-task-container">
+    <header>
+        <button class="btn back"
+                (click)="onBack()">
+                Back to board
+        </button>
+        <div class="title">
+                <h1>{{title}}</h1>
+            </div>
+    </header>
+    <div class="form-container">
+        <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
             <fieldset class="form-group">
                 <legend>Task title*</legend>
                 <input
@@ -62,4 +68,5 @@
                 {{isNew? 'Submit':'Update'}}
             </button>
         </form>
+    </div>
 </div>

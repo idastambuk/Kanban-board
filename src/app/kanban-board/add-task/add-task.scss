@@ -1,9 +1,25 @@
+@import '../../../assets/scss/all';
+
+.add-task-container {
+    padding: 1.5rem;
+    header {
+        display: flex; 
+        justify-content: start;
+        .title {
+            padding-left: 5rem;
+            color: $green;
+            h1 {
+                font-weight: bold;
+            }
+        }
+    }
+}
 .form-container {
     font-size: 1rem;
-    color: #24646A;
+    color: $green;
     width: 60%;
     margin: 0 auto;
-    padding: 5rem 0;
+    padding: 3rem 0;
     legend {
         font-size: 1rem;
         font-weight: 700;
@@ -19,7 +35,7 @@
         position: relative;
         border-radius:15px;
         -webkit-appearance:button;
-        border: double 2px #24646A;
+        border: double 2px $green;
         background-color:transparent;
         color:#FFF;
         white-space: nowrap;
@@ -37,22 +53,27 @@
         right: 0;
         content: "\00d7";
         font-size: 1.5rem;
-        -webkit-text-fill-color: #24646A;
+        -webkit-text-fill-color: $green;
         text-align: center;
         }
     
     input[type=checkbox]:hover {
-        box-shadow:0px 0px 10px #1300ff;
+        box-shadow:0px 0px 10px $orange;
     }
     .form-control {
         &.ng-invalid.ng-touched {
-            border: 2px solid #e85656;
+            border: 2px solid $danger;
         }
         &.ng-valid.ng-touched {
-            border: 2px solid #90b900;            
+            border: 2px solid $success;            
         }
     }
     .submit {
         color: #ffffff;
+    }
+    .dropdown-members {
+        .btn-add {
+
+        }
     }
 }
