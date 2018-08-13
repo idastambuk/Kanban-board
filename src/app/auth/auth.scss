@@ -1,9 +1,11 @@
+@import './../../assets/scss/all.scss';
+
 .title-container {
     padding-top: 13%;
-    color: #24646A;
+    color: $green;
     font-weight: bold;
     a {
-        color: #AE713A;
+        color: $orange;
         font-size: 1rem;
         line-height: 2;
         font-weight: 300;

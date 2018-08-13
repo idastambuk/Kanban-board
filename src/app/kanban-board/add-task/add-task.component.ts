@@ -36,6 +36,8 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 		name: ''
 	}
 
+	title; 
+
 	private isNew = true;
 
 	private status = [...STATUS];
@@ -63,7 +65,7 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 	private dropdownSettings: IMultiSelectSettings = {
         enableSearch: true,
         checkedStyle: 'fontawesome',
-        buttonClasses: 'btn btn-default btn-block',
+        buttonClasses: 'btn btn-add',
         dynamicTitleMaxItems: 10,
         fixedTitle: true,
         closeOnClickOutside: true,
@@ -109,6 +111,7 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 
 		this.route.url.subscribe(route => {
 			this.isNew = route[route.length - 1].path === 'add';
+			this.title = this.isNew ? 'Add task': 'Edit Task';
 		});
 	}
 

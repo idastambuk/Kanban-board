@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { KanbanBoardModule } from './kanban-board/kanban-board.module';
 import { KanbanBoardService } from './services/kanban-board-service/kanban-board.service';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { DndModule } from 'ng2-dnd';
 import { SharedService } from './services/shared-service/shared.service';
 
 
@@ -29,7 +30,8 @@ import { SharedService } from './services/shared-service/shared.service';
     HttpModule,
     HttpClientModule,
     MultiselectDropdownModule,
-    KanbanBoardModule
+    KanbanBoardModule,
+    DndModule.forRoot()
   ],
   providers: [
     AuthService, 
