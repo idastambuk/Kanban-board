@@ -118,7 +118,7 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 			this.taskForm.value.reporter = this.reporter;
 		} else this.getReporter();
 
-		if(this.singleTask && this.all_tags.length > 0) {
+		if(this.singleTask && this.all_tags) {
 			let tags = [...this.all_tags];
 			for(let t in this.singleTask.tags) {
 				tags.forEach(function(el) {
@@ -128,6 +128,7 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 						this.onAddTag(el.id, true);
 					}
 					else el['checked'] = false;
+					this.onAddTag(t, true);
 				}, this)
 			}
 			this.all_tags = tags;

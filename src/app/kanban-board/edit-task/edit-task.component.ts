@@ -39,6 +39,7 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 				response => {
 					this.all_tasks = response;
 					this.getTask();
+					this.subscription.unsubscribe();
 				}
 			)
 		});
@@ -49,11 +50,13 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 		for (let t of this.all_tasks) {
 			if(t.id == this.id) {
 				let tag_ids = [];
-				for(let tag of t.tags) {
-					tag_ids.push(tag.id)
+				if(t.tags.length > 0) {
+					for(let tag of t.tags) {
+						tag_ids.push(tag.id)
+					}
+					t.tags = tag_ids;
+					this.task = t;
 				}
-				t.tags = tag_ids;
-				this.task = t;
 			}
 		}
 	}

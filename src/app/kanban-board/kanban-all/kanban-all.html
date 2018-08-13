@@ -1,27 +1,26 @@
-<div>
-    <button class="add-task"
-            (click)="onAddTask()">Add new task
-    </button>
-    <div *ngFor="let task of tasks">
-        <h1>
-            {{task.name}}
-        </h1>
-        <p>
-            {{task.description}}
-        </p>
-        <p style="color: red;" *ngFor="let tag of task.tags">
-            {{tag.name}}
-        </p>
-        <p>
-            {{task.assignee? task.assignee.name : 'None'}}
-        </p>
-        <p>
-            {{task.reporter? task.reporter.name : 'None'}}
-        </p>
-        <p *ngFor="let task of task.blockedBy">
-            {{task.name}} {{task.id}}
-        </p>
-        <button (click)="onEditTask(task.id)">Edit task</button>
+<div class="tasks-wrapper">
+    <div class="container-group" *ngFor="let group of groups, let i = index">
+		<div class="group-handle"><h2>{{group.name}}</h2></div>
+		<div class="container" dragula="ITEMS" [(dragulaModel)]="group.items" id="{{group.code}}">
+			<div class="item" *ngFor="let item of group.items">
+				<div class="title">
+					<h3><span class="task-id">#{{item.id}} </span>{{item.name}}</h3>
+				</div>
+				<div class="tags">
+					<p *ngFor="let t of item.tags"><i class="icon ion-ios-bookmark {{t.name}}"></i> {{t.name}}</p>
+				</div>
+				<div class="blocked">
+						<i class="icon ion-ios-hand"></i><span *ngFor="let b of item.blockedBy"> #{{b.id}} {{b.name | slice:0:10}} |</span>
+					</div>
+				<div class="assignee">
+					<i class="icon ion-ios-person"></i> {{item.assignee? item.assignee.name: 'none assigned'}}
+				</div>
+			</div>
+		</div>
+		<button 
+		class=" btn add-task"
+		(click)="onAddTask()">+ Add new task
+	</button>
     </div>
 </div>
 

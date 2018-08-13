@@ -14,6 +14,7 @@ import { KanbanBoardModule } from './kanban-board/kanban-board.module';
 import { KanbanBoardService } from './services/kanban-board-service/kanban-board.service';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { SharedService } from './services/shared-service/shared.service';
+import { DragulaModule } from 'ng2-dragula';
 
 
 @NgModule({
@@ -33,9 +34,8 @@ import { SharedService } from './services/shared-service/shared.service';
   ],
   providers: [
     AuthService, 
-    AuthGuard, 
-    SharedService,
-    KanbanBoardService
+    AuthGuard,
+    KanbanBoardService,
   ],
   bootstrap: [AppComponent]
 })

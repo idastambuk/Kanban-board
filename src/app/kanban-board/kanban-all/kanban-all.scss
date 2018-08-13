@@ -1,0 +1,171 @@
+@import '../../../assets/scss/all';
+
+.tasks-wrapper {
+    padding: 4rem 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    .container-group {
+        width: 30%;
+        margin: 0 1.5%;
+        .group-handle {
+            margin-top: 2rem;
+            color: $green;
+            margin-left: 1.5rem;
+            line-height: 4rem;
+            h2 {
+                font-weight: bold;
+                font-size: 2rem;
+                line-height: 2;
+                border-bottom: 2px solid #AE713A;
+                margin-right: 15%;
+            }
+        }
+        .container {
+            background-color: rgba($beige, 0.7);
+            padding: 1rem 1rem;
+            .item {
+                margin-top: 3rem;
+                box-shadow: 0.2rem 0.3rem 0.6rem  #9B9893;
+                border: 2px solid $orange;
+                padding: 1.5rem;
+                border-radius: 6px;
+                font-size: 0.8rem;
+                display: flex;
+                flex-wrap: wrap;
+                color: #9B9893;
+                height: 15rem;;
+                div {
+                    height: 6rem;
+                }
+                .title {
+                    height:75%;
+                    width: 70%;
+                    color: $green;
+                    padding-right: 0.2rem;
+                    h3 {
+                        overflow: hidden;
+                        font-size: 1.3rem;
+                    }
+                }
+                .tags {
+                    height:65%;
+                    width: 30%;
+                    overflow: hidden;
+                    p {
+                        margin-bottom: 0.1rem;
+                    }
+                    
+                    .ion-ios-bookmark {
+                        &.feature {
+                            color: $feature;
+                        }
+                        &.frontend{
+                            color: $frontend;
+                        }
+                        &.backend {
+                            color: $backend;
+                        }
+                        &.bug {
+                            color:$bug; 
+                        }
+                        &.system{
+                            color: $system;
+                        }
+                    }
+                }
+                .blocked {
+                    height:30%;
+                    width: 65%;
+                    .ion-ios-hand {
+                        color: $danger;
+                    }
+                }
+                .assignee {
+                    height: 35%;
+                    width: 35%;
+                    text-align: right;
+                    .ion-ios-person {
+                        color: $orange;
+                    }
+                }
+            }
+        }
+    }
+
+    .add-task {
+        width: 100%;
+        border-radius: 4px;
+        color: $orange;
+        margin: 2rem 0;
+        font-weight: bold;
+        border: 2px solid $orange;
+    }
+    
+}
+
+.gu-mirror {
+    margin-top: 3rem;
+    box-shadow: 0.2rem 0.3rem 0.6rem  #9B9893;
+    border: 2px solid $orange;
+    padding: 1.5rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    color: #9B9893;
+    height: 15rem;;
+    div {
+        height: 6rem;
+    }
+    .title {
+        height:75%;
+        width: 70%;
+        color: $green;
+        padding-right: 0.2rem;
+        h3 {
+            overflow: hidden;
+            font-size: 1.3rem;
+        }
+    }
+    .tags {
+        height:65%;
+        width: 30%;
+        overflow: hidden;
+        p {
+            margin-bottom: 0.1rem;
+        }
+        
+        .ion-ios-bookmark {
+            &.feature {
+                color: $feature;
+            }
+            &.frontend{
+                color: $frontend;
+            }
+            &.backend {
+                color: $backend;
+            }
+            &.bug {
+                color:$bug; 
+            }
+            &.system{
+                color: $system;
+            }
+        }
+    }
+    .blocked {
+        height:30%;
+        width: 65%;
+        .ion-ios-hand {
+            color: $danger;
+        }
+    }
+    .assignee {
+        height: 35%;
+        width: 35%;
+        text-align: right;
+        .ion-ios-person {
+            color: $orange;
+        }
+    }
+}

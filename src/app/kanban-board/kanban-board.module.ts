@@ -9,6 +9,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { KanbanAllComponent } from './kanban-all/kanban-all.component';
 import { SharedService } from '../services/shared-service/shared.service';
+import { DragulaModule, DragulaService } from '../../../node_modules/ng2-dragula';
 
 @NgModule({
 	imports: [
@@ -16,7 +17,8 @@ import { SharedService } from '../services/shared-service/shared.service';
 		ReactiveFormsModule,
 		FormsModule,
 		routing, 
-		MultiselectDropdownModule
+		MultiselectDropdownModule, 
+		DragulaModule
 	],
 	declarations: [
 		KanbanBoardComponent, 
@@ -25,7 +27,8 @@ import { SharedService } from '../services/shared-service/shared.service';
 		EditTaskComponent
 	], 
 	providers: [
-		SharedService
+		SharedService,
+		DragulaService
 	]
 })
 export class KanbanBoardModule {}
