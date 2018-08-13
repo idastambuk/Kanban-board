@@ -1,22 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { KanbanBoardService } from '../services/kanban-board-service/kanban-board.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
+ 
 @Component({
-	selector: 'nga-kanban-board',
-	templateUrl: './kanban-board.html',
+	selector: 'nga-kanban-all',
+	template: '<router-outlet></router-outlet>',
 })
 
-export class KanbanBoardComponent implements OnInit{
-	constructor(
-		private boardService: KanbanBoardService
-	) { }
-
-	private tasks;
-
-	ngOnInit() {
-		this.boardService.getAllTasks()
-			.subscribe(
-				response => this.tasks = response.data
-			)
-	}
+export class KanbanBoardComponent {
+	constructor() {
+	 }
 }

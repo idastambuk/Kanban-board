@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { routing } from './app.routing';
-import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from "@angular/common/http"
 import { HttpModule } from '@angular/http';
 import { KanbanBoardModule } from './kanban-board/kanban-board.module';
 import { KanbanBoardService } from './services/kanban-board-service/kanban-board.service';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { SharedService } from './services/shared-service/shared.service';
 
 
 @NgModule({
@@ -27,11 +28,13 @@ import { KanbanBoardService } from './services/kanban-board-service/kanban-board
     ReactiveFormsModule, 
     HttpModule,
     HttpClientModule,
-    KanbanBoardModule 
+    MultiselectDropdownModule,
+    KanbanBoardModule
   ],
   providers: [
     AuthService, 
     AuthGuard, 
+    SharedService,
     KanbanBoardService
   ],
   bootstrap: [AppComponent]

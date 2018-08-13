@@ -74,7 +74,6 @@ export class KanbanBoardService {
             });
     }
 
-
     requestOptions() {
         const token = this.authService.getToken();
         const headers = new Headers({ 

@@ -1,1 +1,65 @@
-<h1>Kanban board!</h1>
+
+    <button class="add-task"
+    (click)="onBack()">Back to board
+</button>
+<div class="form-container">
+    <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+            <fieldset class="form-group">
+                <legend>Task title*</legend>
+                <input
+                    formControlName="name"
+                    placeholder="Enter task name"
+                    class="form-control form-control-md"
+                    type="text">
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Reporter</legend>
+                <input
+                    placeholder="User"
+                    [value] = "reporter.name"
+                    class="form-control form-control-md"
+                    type="text"
+                    [readonly]="true">
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Description</legend>
+                <textarea
+                    formControlName="description"
+                    placeholder="Enter descrption (min 15 characters)"
+                    class="form-control form-control-md"
+                    type="text">
+                </textarea>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Status*</legend>
+                <select class="form-control custom-select" 
+                        formControlName = "status">
+                    <option *ngFor="let s of status" [ngValue]="s.code">{{s.name}}</option>
+                </select>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Assignee</legend>
+                <select class="form-control custom-select" 
+                        formControlName = "assignee" [(ngModel)]="assignee">  
+                    <option *ngFor="let user of users" [ngValue]="user">{{user.name}}</option>
+                </select>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Tags</legend>
+                    <div *ngFor="let tag of all_tags" class="checkbox">
+                        <input type="checkbox" (change)="onAddTag(tag.id, $event.target.checked)" [checked]="tag.checked"> {{tag.name}}<br>
+                    </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <legend>Blocked by*</legend>
+                <ss-multiselect-dropdown 
+                    [options]="all_tasks" 
+                    [settings]="dropdownSettings" 
+                    [texts]="myTexts" 
+                    formControlName="blockedBy"></ss-multiselect-dropdown>
+            </fieldset>
+            <button class="submit btn btn-lg pull-xs-right" type="submit" [disabled]="!taskForm.valid">
+                {{isNew? 'Submit':'Update'}}
+            </button>
+        </form>
+</div>

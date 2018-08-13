@@ -8,7 +8,7 @@ export const routes: Routes = [
   { path: 'register', component: AuthComponent },
   { path: 'login', component: AuthComponent },
 
-  { path: 'kanban-board', component: KanbanBoardComponent, canActivate: [AuthGuard]},
+  { path: 'kanban-board', component: KanbanBoardComponent},
 
   { path: '', redirectTo: 'kanban-board', pathMatch: 'full' },
   { path: '**', redirectTo: 'kanban-board' }

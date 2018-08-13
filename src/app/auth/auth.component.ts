@@ -12,7 +12,6 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit, AfterViewInit{
   authType: String = '';
   title: String = '';
-  isSubmitting: boolean = false;
   authForm: FormGroup;
 
   constructor(
@@ -21,7 +20,7 @@ export class AuthComponent implements OnInit, AfterViewInit{
     private formBuilder: FormBuilder,
     private router: Router
   ) {
-    // use FormBuilder to create a form group
+
     this.authForm = this.formBuilder.group({
       'username': ['', Validators.required],
       'password': ['', Validators.required]

@@ -19,21 +19,6 @@
             height: 16rem;
         }
     }
-    form {
-        appearance: none;
-        width: 75%;
-        margin: 0 auto;
-        input {
-            color: #24646A;
-        }
-        input:-webkit-autofill {
-            -webkit-text-fill-color: #24646A !important;
-         }
-        button.submit {
-            background-color: #24646A;
-            border: none; 
-        }
-    }
 }
 
 @media screen and (max-width: 767px) {

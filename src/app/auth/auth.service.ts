@@ -51,7 +51,6 @@ export class AuthService {
   requestOptions() {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     let requestOptions = new RequestOptions({ headers: headers });
-    console.log(headers);
     return requestOptions;
 }
 

@@ -1,0 +1,28 @@
+<div>
+    <button class="add-task"
+            (click)="onAddTask()">Add new task
+    </button>
+    <div *ngFor="let task of tasks">
+        <h1>
+            {{task.name}}
+        </h1>
+        <p>
+            {{task.description}}
+        </p>
+        <p style="color: red;" *ngFor="let tag of task.tags">
+            {{tag.name}}
+        </p>
+        <p>
+            {{task.assignee? task.assignee.name : 'None'}}
+        </p>
+        <p>
+            {{task.reporter? task.reporter.name : 'None'}}
+        </p>
+        <p *ngFor="let task of task.blockedBy">
+            {{task.name}} {{task.id}}
+        </p>
+        <button (click)="onEditTask(task.id)">Edit task</button>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
