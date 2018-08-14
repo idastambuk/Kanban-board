@@ -9,6 +9,7 @@ import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'ang
 import { SharedService, Task } from "../../services/shared-service/shared.service";
 import { Subscription } from "../../../../node_modules/rxjs";
 import { SelectControlValueAccessor } from '@angular/forms';
+import { ToastrService } from "../../../../node_modules/ngx-toastr";
 
 
 @Component({
@@ -25,16 +26,14 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 		private boardService: KanbanBoardService, 
 		private sharedService: SharedService,
 		private route: ActivatedRoute,
-		private router: Router
+		private router: Router, 
+		private toastr: ToastrService
 		) {
 	}
 
-	@Input() singleTask: Task;
+	@Input() singleTask;
 
-	assignee = {
-		id: '',
-		name: ''
-	}
+	assignee: Object = {};
 
 	title; 
 
@@ -87,10 +86,10 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 			'name': [null, Validators.required],
 			'reporter': ['', {disabled: true}],
 			'description': [null, Validators.minLength(15)], 
-			'status': [this.status[0].code, Validators.required],
-			'assignee': [],
+			'status': [this.status[0].code],
+			'assignee': [null,Validators.required],
 			'tags': this.formBuilder.array([]),
-			'blockedBy': [[], Validators.required]
+			'blockedBy': [[]]
 		  });
 		
 		this.getReporter();
@@ -131,7 +130,6 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 						this.onAddTag(el.id, true);
 					}
 					else el['checked'] = false;
-					this.onAddTag(t, true);
 				}, this)
 			}
 			this.all_tags = tags;
@@ -144,8 +142,8 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 			this.singleTask.blockedBy = blocked;
 
 			if(this.singleTask.assignee) {
-				this.assignee.id = this.singleTask.assignee['id'];
-				this.assignee.id = this.singleTask.assignee['name'];
+				this.assignee['id'] = this.singleTask.assignee['id'];
+				this.assignee['name'] = this.singleTask.assignee['name'];
 			}
 
 			this.taskForm.value.status = this.singleTask.status;
@@ -190,7 +188,7 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 					this.taskForm.reset();
 					this.router.navigate(['../'], {relativeTo: this.route});
 				},
-				error => console.log(error)
+				error => this.toastr.error(error)
 			)
 		} 	
 		else {
@@ -205,7 +203,7 @@ export class AddTaskComponent implements OnInit, OnChanges, OnDestroy {
 					this.taskForm.reset();
 					this.router.navigate(['../'], {relativeTo: this.route});
 				},
-				error => console.log(error)
+				error => this.toastr.error(error)
 			)
 		}	
 	}

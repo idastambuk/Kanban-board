@@ -3,6 +3,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { ToastrService } from '../../../node_modules/ngx-toastr';
 
 @Component({
   selector: 'auth-page',
@@ -18,7 +19,9 @@ export class AuthComponent implements OnInit, AfterViewInit{
     private authService: AuthService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+		private toastr: ToastrService,
+
   ) {
 
     this.authForm = this.formBuilder.group({
@@ -53,21 +56,27 @@ export class AuthComponent implements OnInit, AfterViewInit{
       this.authService.login(credentials)
       .subscribe(
         response => {
-          if(response.data) 
+          if(response.data) {
+            this.toastr.success('Login successful');
             this.router.navigate(['kanban-board']);
+
+          }
         },
         error => {
-          console.log(error);
+          this.toastr.error(error);
         }
       );
     } else {
         this.authService.signup(credentials)
         .subscribe(
           response => {
-            if(response.data) 
+            if(response.data) {
+              this.toastr.success('Registration successful');
               this.router.navigate(['kanban-board']);
+            }
           },
           error => {
+            this.toastr.error(error);
             console.log(error);
           }
         );

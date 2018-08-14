@@ -4,11 +4,16 @@
     padding: 4rem 1rem;
     display: flex;
     justify-content: space-evenly;
+    height: auto;
     .container-group {
         width: 30%;
         margin: 0 1.5%;
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.2);
         .group-handle {
             margin-top: 2rem;
+            margin-bottom: 4rem;
             color: $green;
             margin-left: 1.5rem;
             line-height: 4rem;
@@ -21,10 +26,10 @@
             }
         }
         .container {
-            background-color: rgba($beige, 0.7);
+            height: 100%;
             padding: 1rem 1rem;
             .item {
-                margin-top: 3rem;
+                margin-bottom: 3rem;
                 box-shadow: 0.2rem 0.3rem 0.6rem  #9B9893;
                 border: 2px solid $orange;
                 padding: 1.5rem;
@@ -32,7 +37,7 @@
                 font-size: 0.8rem;
                 display: flex;
                 flex-wrap: wrap;
-                color: #9B9893;
+                color: rgb(77, 75, 70);
                 height: 15rem;;
                 div {
                     height: 6rem;
@@ -76,6 +81,7 @@
                 .blocked {
                     height:30%;
                     width: 65%;
+                    overflow: hidden;
                     .ion-ios-hand {
                         color: $danger;
                     }

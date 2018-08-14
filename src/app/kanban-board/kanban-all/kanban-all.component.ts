@@ -8,6 +8,7 @@ import 'rxjs/add/observable/forkJoin';
 import { SharedService } from '../../services/shared-service/shared.service';
 import { DragulaService } from '../../../../node_modules/ng2-dragula';
 import { DragulaOptions } from '../../../../node_modules/@types/dragula';
+import { ToastrService } from '../../../../node_modules/ngx-toastr';
  
 
 
@@ -24,15 +25,28 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 		private route: ActivatedRoute,
 		private sharedService: SharedService,
 		private dragulaService: DragulaService, 
+		private toastr: ToastrService,
 		private boardService: KanbanBoardService
 	) {
+
+		const group: any = this.dragulaService.find('ITEMS');
+		if (group !== undefined ) this.dragulaService.destroy('ITEMS');
+		dragulaService.createGroup('ITEMS', {
+			accepts: (el) => {
+				let isTrue = (el.attributes['blocked'].value === 'true'); 
+				this.toastr.toastrConfig.preventDuplicates = true;
+				if(isTrue) this.toastr.error('Task cannot be moved. Make sure it is not blocked by any other tasks');
+				return !isTrue;
+			},
+		});
+
 		this.subs.add(dragulaService.dropModel(this.ITEMS)
-		.subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
-			let dataToSend = {...item};
-			let newStatus = target.id;
-			this.updateTask(dataToSend, newStatus);
-      	})
-    );
+			.subscribe(({ target, item }) => {
+				let dataToSend = {...item};
+				let newStatus = target.attributes['code'].value;
+				this.updateTask(dataToSend, newStatus);
+			})
+		);
 
 	}
 
@@ -47,6 +61,7 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 	private done: Object[] = [];
 
 	ITEMS = 'ITEMS';
+
 	public groups:Array<any> = [
 		{
 		  name: 'To Do',
@@ -68,6 +83,7 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 	options: DragulaOptions = {
 		revertOnSpill: true,
 	}
+		
 
 	private fnRun = false;
 
@@ -87,6 +103,11 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 	taskColumnsFn() {
 		if(this.fnRun === false) {
 			for (let task of this.tasks) {
+				for(let b of task.blockedBy) {
+					if(b['status'] !== "DONE") {
+						task['blocked'] = true;
+					}
+				}
 				switch (task.status) {
 					case "TODO":
 						this.to_do.push(task);
@@ -98,8 +119,8 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 						this.done.push(task);
 						break;
 					default:
-						  break;
-				  }
+							break;
+				}
 			}
 			this.fnRun = true;
 		}
@@ -115,6 +136,7 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 		data.assignee ? dataToSend['assignee'] = data.assignee.id : dataToSend['assignee'] = '';
 		dataToSend['reporter'] = data.reporter.id;
 		dataToSend['status'] = status;
+		delete dataToSend['blocked'];
 
 		for(let tag of data.tags) {
 			tags.push(tag.id);}
@@ -129,7 +151,10 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 		this.boardService.updateTask(data.id, dataToSend)
 			.subscribe(
 				res => {
-					console.log('updated task');
+					this.toastr.success('Task successfully updated')
+				},
+				error => {
+					this.toastr.error(error);
 				}
 			)
 	}

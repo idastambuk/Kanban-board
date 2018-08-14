@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './auth/auth.service';
@@ -13,9 +13,8 @@ import { HttpModule } from '@angular/http';
 import { KanbanBoardModule } from './kanban-board/kanban-board.module';
 import { KanbanBoardService } from './services/kanban-board-service/kanban-board.service';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-import { DndModule } from 'ng2-dnd';
-import { SharedService } from './services/shared-service/shared.service';
-import { DragulaModule } from 'ng2-dragula';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -25,6 +24,7 @@ import { DragulaModule } from 'ng2-dragula';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     routing,
     FormsModule, 
     ReactiveFormsModule, 
@@ -32,7 +32,9 @@ import { DragulaModule } from 'ng2-dragula';
     HttpClientModule,
     MultiselectDropdownModule,
     KanbanBoardModule,
-    DndModule.forRoot()
+    ToastrModule.forRoot({ 
+      timeOut: 3500,
+  }),
   ],
   providers: [
     AuthService, 

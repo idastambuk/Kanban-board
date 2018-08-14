@@ -16,6 +16,7 @@ export interface Task {
     assignee: Object;
     blockedBy: Object[];
     status: string;
+    blocked: boolean;
 }
 
 @Injectable()
@@ -44,48 +45,44 @@ export class SharedService {
 
 
     taskHandler() {
-        if(this.tasks_final.length === 0) {
-            Observable.forkJoin([
-                this.boardService.getAllTasks(),
-                this.boardService.getAllTags(),
-                this.boardService.getAllUsers(),
-            ]).subscribe(results => {
-                this.tasks_initial = results[0].data;
-    
-                this.tags = results[1].data;
-                this.tagsSubject.next(this.tags);
-    
-                this.users = results[2].data;
-                this.usersSubject.next(this.users);
-    
-                this.taskGetInfo();
-            });
-        } else this.taskGetInfo();
+        Observable.forkJoin([
+            this.boardService.getAllTasks(),
+            this.boardService.getAllTags(),
+            this.boardService.getAllUsers(),
+        ]).subscribe(results => {
+            this.tasks_initial = results[0].data;
+
+            this.tags = results[1].data;
+            this.tagsSubject.next(this.tags);
+
+            this.users = results[2].data;
+            this.usersSubject.next(this.users);
+
+            this.taskGetInfo();
+        });
 		
     }
 
     taskGetInfo() {
+        this.tasks_final=[]
+        for(let t of this.tasks_initial) {
+            let task: Task = {name: '', id: '', description: '', assignee: {},reporter: {}, status: '', blockedBy: [], tags: [], blocked: false};
 
-        if(this.tasks_final.length === 0) {
-            for(let t of this.tasks_initial) {
-                let task: Task = {name: '', id: '', description: '', assignee: {},reporter: {}, status: '', blockedBy: [], tags: []};
-    
-                task.id = t.id;
-                task.name = t.name;
-                task.description = t.description;
-                task.reporter = this.getSingleUser(t.reporter);
-                task.assignee = this.getSingleUser(t.assignee);
-                task.status = t.status;
-    
-                for(let blocked of t.blockedBy) {
-                    task.blockedBy.push(this.getSingleTask(blocked));
-                }
-    
-                for(let tag of t.tags) {
-                    task.tags.push(this.getSingleTag(tag));
-                }
-                this.tasks_final.push(task);
+            task.id = t.id;
+            task.name = t.name;
+            task.description = t.description;
+            task.reporter = this.getSingleUser(t.reporter);
+            task.assignee = this.getSingleUser(t.assignee);
+            task.status = t.status;
+
+            for(let blocked of t.blockedBy) {
+                task.blockedBy.push(this.getSingleTask(blocked));
             }
+
+            for(let tag of t.tags) {
+                task.tags.push(this.getSingleTag(tag));
+            }
+            this.tasks_final.push(task);
         }
         this.tasksSubject.next(this.tasks_final);
     }

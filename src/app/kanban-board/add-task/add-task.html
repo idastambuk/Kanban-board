@@ -44,7 +44,7 @@
                 </select>
             </fieldset>
             <fieldset class="form-group">
-                <legend>Assignee</legend>
+                <legend>Assignee*</legend>
                 <select class="form-control custom-select" 
                         formControlName = "assignee" [(ngModel)]="assignee">  
                     <option *ngFor="let user of users" [ngValue]="user">{{user.name}}</option>
@@ -57,7 +57,7 @@
                     </div>
             </fieldset>
             <fieldset class="form-group">
-                <legend>Blocked by*</legend>
+                <legend>Blocked by</legend>
                 <ss-multiselect-dropdown 
                     [options]="all_tasks" 
                     [settings]="dropdownSettings" 

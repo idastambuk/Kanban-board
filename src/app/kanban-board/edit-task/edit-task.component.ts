@@ -39,7 +39,6 @@ export class EditTaskComponent implements OnInit, OnDestroy {
 				response => {
 					this.all_tasks = response;
 					this.getTask();
-					this.subscription.unsubscribe();
 				}
 			)
 		});
