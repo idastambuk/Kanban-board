@@ -1,16 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { KanbanBoardService } from '../../services/kanban-board-service/kanban-board.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Subscription, Observable } from 'rxjs';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/observable/forkJoin';
-import { SharedService } from '../../services/shared-service/shared.service';
-import { DragulaService } from '../../../../node_modules/ng2-dragula';
-import { DragulaOptions } from '../../../../node_modules/@types/dragula';
-import { ToastrService } from '../../../../node_modules/ngx-toastr';
- 
+import { Subscription } from 'rxjs';
+import { DragulaService } from 'ng2-dragula';
+import { DragulaOptions } from 'dragula';
+import { ToastrService } from 'ngx-toastr';
 
+import { SharedService } from '../../services';
+import { KanbanBoardService } from '../../services';
 
 
 @Component({
@@ -52,7 +49,14 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 
 	private tasks;
 
+	title = "Kanban board";
+
 	subs = new Subscription();
+
+	//Visualization directive tag groupings
+
+	group1 = ["frontend", "backend", "system"];
+	group2 = ["feature", "bug"];
 
 	//Dragula options
 
@@ -89,16 +93,21 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 
 	private subscription: Subscription;
 
+	private tasksWithTags = [];
+
 	ngOnInit() {
 		this.subscription = this.sharedService.tasksSubject$
 			.subscribe(
 				res => {
 					this.tasks = res;
 					this.taskColumnsFn();
+					this.visualizedDataCompiler(this.tasks);	
 				}
 			);
-		this.sharedService.taskHandler();		
+		this.sharedService.taskHandler();
 	};
+
+	//Generate arrays to be attached to status columns
 
 	taskColumnsFn() {
 		if(this.fnRun === false) {
@@ -157,6 +166,16 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 					this.toastr.error(error);
 				}
 			)
+	}
+
+	//Method for generating data to be passed into the visualisation.directive
+
+	visualizedDataCompiler(tasks) {
+		this.tasksWithTags = []; 
+		tasks.forEach(element => {
+			let tags = element.tags.map(el => el.name);
+			this.tasksWithTags.push(tags);
+		});
 	}
 
 	onAddTask() {

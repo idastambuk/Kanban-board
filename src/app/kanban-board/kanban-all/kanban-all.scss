@@ -1,113 +1,165 @@
 @import '../../../assets/scss/all';
 
-.tasks-wrapper {
-    padding: 4rem 1rem;
-    display: flex;
-    justify-content: space-evenly;
-    height: auto;
-    .container-group {
-        width: 30%;
-        margin: 0 1.5%;
+.kanban-container {
+    header {
         display: flex;
-        flex-direction: column;
-        background: rgba(255, 255, 255, 0.2);
-        .group-handle {
-            margin-top: 2rem;
-            margin-bottom: 4rem;
+        padding-left: 2rem;
+        .add-task {
+            justify-self: start;
+            border-radius: 4px;
+            color: $orange;
+            margin: 2rem 0;
+            font-weight: bold;
+            border: 2px solid $orange;
+        }
+    }
+    .page-title {
+        margin: 3rem;
+        text-align: center;
+        h1 {
+            font-size: 3.5rem;
             color: $green;
-            margin-left: 1.5rem;
-            line-height: 4rem;
-            h2 {
-                font-weight: bold;
-                font-size: 2rem;
-                line-height: 2;
-                border-bottom: 2px solid #AE713A;
-                margin-right: 15%;
-            }
-        }
-        .container {
-            height: 100%;
-            padding: 1rem 1rem;
-            .item {
-                margin-bottom: 3rem;
-                box-shadow: 0.2rem 0.3rem 0.6rem  #9B9893;
-                border: 2px solid $orange;
-                padding: 1.5rem;
-                border-radius: 6px;
-                font-size: 0.8rem;
-                display: flex;
-                flex-wrap: wrap;
-                color: rgb(77, 75, 70);
-                height: 15rem;;
-                div {
-                    height: 6rem;
-                }
-                .title {
-                    height:75%;
-                    width: 70%;
-                    color: $green;
-                    padding-right: 0.2rem;
-                    h3 {
-                        overflow: hidden;
-                        font-size: 1.3rem;
-                    }
-                }
-                .tags {
-                    height:65%;
-                    width: 30%;
-                    overflow: hidden;
-                    p {
-                        margin-bottom: 0.1rem;
-                    }
-                    
-                    .ion-ios-bookmark {
-                        &.feature {
-                            color: $feature;
-                        }
-                        &.frontend{
-                            color: $frontend;
-                        }
-                        &.backend {
-                            color: $backend;
-                        }
-                        &.bug {
-                            color:$bug; 
-                        }
-                        &.system{
-                            color: $system;
-                        }
-                    }
-                }
-                .blocked {
-                    height:30%;
-                    width: 65%;
-                    overflow: hidden;
-                    .ion-ios-hand {
-                        color: $danger;
-                    }
-                }
-                .assignee {
-                    height: 35%;
-                    width: 35%;
-                    text-align: right;
-                    .ion-ios-person {
-                        color: $orange;
-                    }
-                }
-            }
         }
     }
-
-    .add-task {
-        width: 100%;
-        border-radius: 4px;
-        color: $orange;
-        margin: 2rem 0;
-        font-weight: bold;
-        border: 2px solid $orange;
-    }
+    .tags-wrapper {
+        .tag-vis {
+            height: 1rem;
+            display: flex;
+            width: 75%;
+            margin: 2rem auto;
+            div {
+                margin-top: 3rem;
+                height: 100%;
+                &.feature {
+                    background-color: $feature;
+                }
+                &.frontend{
+                    background-color: $frontend;
+                }
+                &.backend {
+                    background-color: $backend;
+                }
+                &.bug {
+                    background-color:$bug; 
+                }
+                &.system{
+                    background-color: $system;
+                }
     
+            }
+        }
+    }
+    .tasks-wrapper {
+        padding: 4rem 1rem;
+        display: flex;
+        justify-content: space-evenly;
+        height: auto;
+        .container-group {
+            width: 30%;
+            margin: 0 1.5%;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.2);
+            .group-handle {
+                margin-top: 2rem;
+                margin-bottom: 4rem;
+                color: $green;
+                margin-left: 1.5rem;
+                line-height: 4rem;
+                h2 {
+                    font-weight: bold;
+                    font-size: 2rem;
+                    line-height: 2;
+                    border-bottom: 2px solid #AE713A;
+                    margin-right: 15%;
+                }
+            }
+            .container {
+                height: 100%;
+                padding: 1rem 1rem;
+                .item {
+                    position: relative;
+                    margin-bottom: 3rem;
+                    box-shadow: 0.2rem 0.3rem 0.6rem  #9B9893;
+                    border: 2px solid $orange;
+                    padding: 1.5rem;
+                    border-radius: 6px;
+                    font-size: 0.8rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    color: rgb(77, 75, 70);
+                    height: 15rem;
+                    .edit-icon {
+                        position: absolute;
+                        right: 0.5rem;
+                        top: 0.2rem;
+                        border: 0;
+                        background: transparent;
+                        i {
+                            font-size: 1.3rem;
+                        }
+                    }
+                    div {
+                        height: 6rem;
+                    }
+                    .title {
+                        height:75%;
+                        width: 70%;
+                        color: $green;
+                        padding-right: 0.2rem;
+                        h3 {
+                            overflow: hidden;
+                            font-size: 1.3rem;
+                        }
+                    }
+                    .tags {
+                        height:65%;
+                        width: 30%;
+                        overflow: hidden;
+                        p {
+                            margin-bottom: 0.1rem;
+                        }
+                        
+                        .ion-ios-bookmark {
+                            &.feature {
+                                color: $feature;
+                            }
+                            &.frontend{
+                                color: $frontend;
+                            }
+                            &.backend {
+                                color: $backend;
+                            }
+                            &.bug {
+                                color:$bug; 
+                            }
+                            &.system{
+                                color: $system;
+                            }
+                        }
+                    }
+                    .blocked {
+                        height:30%;
+                        width: 65%;
+                        overflow: hidden;
+                        .ion-ios-hand {
+                            color: $danger;
+                        }
+                    }
+                    .assignee {
+                        height: 35%;
+                        width: 35%;
+                        text-align: right;
+                        .ion-ios-person {
+                            color: $orange;
+                        }
+                    }
+                }
+            }
+        }        
+    }
 }
+
 
 .gu-mirror {
     margin-top: 3rem;

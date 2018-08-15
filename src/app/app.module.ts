@@ -20,7 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

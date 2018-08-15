@@ -1,15 +1,18 @@
 import { Component, Input } from "@angular/core";
 import { OnInit, OnChanges, OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
 
-import { STATUS } from '../../services/constants/const';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from "@angular/forms";
-import { KanbanBoardService } from "../../services/kanban-board-service/kanban-board.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
-import { SharedService, Task } from "../../services/shared-service/shared.service";
-import { Subscription } from "../../../../node_modules/rxjs";
-import { SelectControlValueAccessor } from '@angular/forms';
-import { ToastrService } from "../../../../node_modules/ngx-toastr";
+import { IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+import { Subscription } from "rxjs";
+import { ToastrService } from "ngx-toastr";
+
+import { STATUS } from '../../services';
+import { SharedService } from '../../services';
+import { KanbanBoardService } from '../../services';
+
+
+
 
 
 @Component({

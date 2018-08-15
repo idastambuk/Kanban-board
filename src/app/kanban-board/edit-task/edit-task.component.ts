@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
-import { OnInit, OnDestroy } from "@angular/core/src/metadata/lifecycle_hooks";
+import { OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { KanbanBoardService } from "../../services/kanban-board-service/kanban-board.service";
-import { Subject, Subscription } from "rxjs";
+
+import { Subscription } from "rxjs";
 import 'rxjs/add/operator/takeUntil';
-import { SharedService } from "../../services/shared-service/shared.service";
+
+import { SharedService } from '../../services';
 
 
 @Component({

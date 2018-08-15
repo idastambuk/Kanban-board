@@ -2,14 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { routing } from './kanban-board.routing';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { DragulaModule, DragulaService } from 'ng2-dragula';
+
 import { KanbanBoardComponent } from './kanban-board.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { KanbanAllComponent } from './kanban-all/kanban-all.component';
-import { SharedService } from '../services/shared-service/shared.service';
-import { DragulaModule, DragulaService } from '../../../node_modules/ng2-dragula';
+
+import { routing } from './kanban-board.routing';
+
+import { KanbanVisualizeDirective } from '../directives';
+import { SharedService } from '../services';
+
 
 @NgModule({
 	imports: [
@@ -18,13 +23,14 @@ import { DragulaModule, DragulaService } from '../../../node_modules/ng2-dragula
 		FormsModule,
 		routing, 
 		MultiselectDropdownModule, 
-		DragulaModule
+		DragulaModule,
 	],
 	declarations: [
 		KanbanBoardComponent, 
 		KanbanAllComponent,
 		AddTaskComponent,
-		EditTaskComponent
+		EditTaskComponent,
+		KanbanVisualizeDirective
 	], 
 	providers: [
 		SharedService,

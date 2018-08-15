@@ -2,8 +2,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import { AuthService } from './auth.service';
-import { ToastrService } from '../../../node_modules/ngx-toastr';
+
 
 @Component({
   selector: 'auth-page',
@@ -77,7 +79,6 @@ export class AuthComponent implements OnInit, AfterViewInit{
           },
           error => {
             this.toastr.error(error);
-            console.log(error);
           }
         );
     }
