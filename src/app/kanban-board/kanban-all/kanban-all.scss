@@ -1,6 +1,10 @@
 @import '../../../assets/scss/all';
 
 .kanban-container {
+    zoom: 100%;
+    @media screen and (max-width: 600px) {
+       zoom: 50%;
+    }
     header {
         display: flex;
         padding-left: 2rem;
@@ -22,13 +26,23 @@
         }
     }
     .tags-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .legend {
+            margin: 1rem 12%;
+            span {
+                margin-right: 2rem;
+                margin-left: 0.2rem;
+                color: $orange;
+            }
+        }
         .tag-vis {
             height: 1rem;
             display: flex;
             width: 75%;
-            margin: 2rem auto;
+            margin: 1rem auto;
             div {
-                margin-top: 3rem;
                 height: 100%;
                 &.feature {
                     background-color: $feature;
@@ -47,6 +61,14 @@
                 }
     
             }
+        }
+    }
+    .search-wrapper {
+        width: 30%;
+        margin: 7rem 2rem 1rem auto;
+        text-align: right;
+        input {
+            text-align: right;
         }
     }
     .tasks-wrapper {
@@ -110,6 +132,9 @@
                         h3 {
                             overflow: hidden;
                             font-size: 1.3rem;
+                            @media screen and (max-width: 600px) {
+                                font-size: 0.9rem;
+                            }
                         }
                     }
                     .tags {
@@ -118,24 +143,6 @@
                         overflow: hidden;
                         p {
                             margin-bottom: 0.1rem;
-                        }
-                        
-                        .ion-ios-bookmark {
-                            &.feature {
-                                color: $feature;
-                            }
-                            &.frontend{
-                                color: $frontend;
-                            }
-                            &.backend {
-                                color: $backend;
-                            }
-                            &.bug {
-                                color:$bug; 
-                            }
-                            &.system{
-                                color: $system;
-                            }
                         }
                     }
                     .blocked {
@@ -225,5 +232,23 @@
         .ion-ios-person {
             color: $orange;
         }
+    }
+}
+
+.ion-ios-bookmark {
+    &.feature {
+        color: $feature;
+    }
+    &.frontend{
+        color: $frontend;
+    }
+    &.backend {
+        color: $backend;
+    }
+    &.bug {
+        color:$bug; 
+    }
+    &.system{
+        color: $system;
     }
 }
