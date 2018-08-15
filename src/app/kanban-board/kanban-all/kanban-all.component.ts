@@ -303,6 +303,10 @@ export class KanbanAllComponent implements OnInit, OnDestroy{
 		this.router.navigate(['../', id, 'edit'], {relativeTo: this.route});
 	}
 
+	onLogout() {
+		localStorage.clear();
+		this.router.navigate(['/login']);
+	}
 	ngOnDestroy() {
 		this.subscription.unsubscribe();
 	}
